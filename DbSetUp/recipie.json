@@ -1,7 +1,7 @@
 {
   "name": "Butter Cookies",
   "description": "Quick and easy way to bake delicious butter cookies",
-  "type": "Non Vegetarian (includes egg)",
+  "type": "Non Vegetarian",
   "category": "Snack",
   "preptime": 20,
   "servings": 12,

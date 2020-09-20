@@ -9,6 +9,7 @@ import json
 # Validation Schema
 schema = json.load(open(getcwd() + '/api/schema.json', 'r'))
 
+
 def add(recipie, index='recipies'):
     """
     Add a new object to the index in the database
@@ -31,7 +32,7 @@ def add(recipie, index='recipies'):
         return ("Internal Server Error", 500)
 
 
-def get(id=None, index='recipies', servings = None):
+def get(id=None, index='recipies', servings=None):
     """
     Get a document from the index
 
@@ -66,12 +67,14 @@ def get(id=None, index='recipies', servings = None):
     except Exception as e:
         print(e, file=stderr)
         return ("Internal Server Error", 500)
-    
+
     if servings is not None:
         if not isinstance(servings, int):
             return ("Servings needs to be of type integer", 400)
         givenServings = result['_source']['servings']
         for ingredient in result['_source']['ingredients']:
-            ingredient['quantity'] = (ingredient['quantity']/givenServings)*servings
-        
+            ingredient['quantity'] = (ingredient['quantity'] /
+                                      givenServings) * servings
+        result['_source']['servings'] = servings
+
     return result['_source']
