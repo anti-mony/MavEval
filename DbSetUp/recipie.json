@@ -1,0 +1,27 @@
+{
+  "name": "Butter Cookies",
+  "description": "Quick and easy way to bake delicious butter cookies",
+  "type": "Non Vegetarian (includes egg)",
+  "category": "Snack",
+  "preptime": 20,
+  "servings": 12,
+  "calories": 125,
+  "instructions": "Preheat oven to 150 degree celcius. Mix Batter. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed urna porttitor, aliquam lectus quis, vulputate elit. Fusce id vulputate sapien, a ultricies nulla. Sed leo justo, faucibus ac mi vel, scelerisque gravida neque. Mauris dignissim luctus enim a convallis. Etiam porttitor ex non lacus gravida, vitae pretium ipsum malesuada. In pellentesque, tellus porttitor imperdiet suscipit, magna arcu lacinia dolor, sit amet imperdiet felis eros tincidunt erat. Vestibulum egestas risus non ornare aliquet. Nullam lobortis cursus ultricies",
+  "ingredients": [
+    {
+      "name": "Butter",
+      "quantity": 50,
+      "unit": "grams"
+    },
+    {
+      "name": "Mix",
+      "quantity": 1,
+      "unit": "box"
+    },
+    {
+      "name": "egg",
+      "quantity": 1,
+      "unit": ""
+    }
+  ]
+}

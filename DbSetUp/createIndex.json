@@ -1,0 +1,25 @@
+{
+  "settings": {
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "properties": {
+      "name": { "type": "text" },
+      "description": { "type": "text" },
+      "type": { "type": "text" },
+      "category": { "type": "text" },
+      "preptime": { "type": "integer" },
+      "nservings": { "type": "integer" },
+      "instructions": { "type": "text" },
+      "calories": { "type": "integer" },
+      "ingredients": {
+        "type": "nested",
+        "properties": {
+          "name": { "type": "text" },
+          "quantity": { "type": "float" },
+          "unit": { "type": "text" }
+        }
+      }
+    }
+  }
+}

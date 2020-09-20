@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+    database:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+        environment: 
+            - discovery.type=single-node
+        ports:
+            - 9200:9200
+            - 9300:9300
+        networks:
+            - backend
+    setup:
+        build: './DbSetUp'
+        depends_on:
+            - database
+        networks: 
+            - backend
+    pythonapi:
+        restart: always
+        build: './API_Python'
+        depends_on:
+            - database
+            - setup
+        volumes:
+            - ./API_Python:/usr/src/app
+        ports:
+            - "5000:5000"
+        environment: 
+            - FLASK_APP=/usr/src/app/app.py
+            - FLASK_ENV=development
+        networks: 
+            - backend
+            - frontend
+        command: flask run --host=0.0.0.0 --port=5000
+    frontend:
+        depends_on:
+            - database
+            - pythonapi
+        restart: always
+        build: ./client
+        volumes:
+            - ./client:/usr/src/app
+        networks: 
+            - frontend
+        ports:
+            - "3000:3000"
+        stdin_open: true
+        command: yarn start
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
