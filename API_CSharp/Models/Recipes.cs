@@ -28,16 +28,16 @@ namespace Recipes.Models
         public string instructions { get; set; }
 
         [Required]
-        public List<Ingredients> ingredients { get; set; }
+        public List<Ingredient> ingredients { get; set; }
 
     }
 
-    public class Ingredients
+    public class Ingredient
     {
         [Required]
         public string name { get; set; }
         [Required]
-        public int quantity { get; set; }
+        public float quantity { get; set; }
 
         public string unit { get; set; }
     }

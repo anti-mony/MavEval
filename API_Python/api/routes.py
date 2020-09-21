@@ -3,6 +3,7 @@ from api.controller import get, add
 
 recipies = Blueprint('recipies', __name__)
 
+
 @recipies.route('/api/p/')
 def getSpec():
     return jsonify({
@@ -25,13 +26,14 @@ def getRecepies():
     if request.method == 'GET':
         response = get()
         if isinstance(response, list):
-            return jsonify({'data': response}), 200
+            return jsonify(response), 200
         return response
     else:
         response = add(request.json)
         if isinstance(response, dict):
             return response, 200
         return response
+
 
 @recipies.route('/api/p/recipies/<id>', methods=['GET'])
 def getRecepie(id):
@@ -43,6 +45,6 @@ def getRecepie(id):
     response = get(id, servings=servings)
 
     if not isinstance(response, dict):
-        return response 
-        
-    return jsonify({'data': response}), 200
+        return response
+
+    return response, 200

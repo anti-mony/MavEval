@@ -31,16 +31,15 @@ const Recipie = ({ recipe }) => {
       </div>
       <div className="item">
         <div className="label item">Ingredients: </div>
-        <div>
+        <ul>
           {recipe.ingredients.map((item, index) => (
-            <div key={index} className="item">
-              <span>{index}. </span>
+            <li key={index} className="item">
               <span style={{ fontStyle: "italic" }}>{item.name}: </span>
               <span>{item.quantity.toFixed(2)} </span>
               <span>{item.unit}</span>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
       <div className="item">
         <div className="label">Instructions: </div>

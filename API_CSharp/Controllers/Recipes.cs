@@ -40,11 +40,11 @@ namespace Recipes.Controllers
 
 
         [HttpGet("{id}")]
-        public ActionResult<Recipe> getAll(string id)
+        public ActionResult<Recipe> getOne(string id, [FromQuery] int servings)
         {
             try
             {
-                var item = _repository.getRecipeByid(id);
+                var item = _repository.getRecipeByid(id, servings);
                 return Ok(item);
             }
             catch (ElasticsearchClientException e)

@@ -4,9 +4,6 @@ services:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
         environment: 
             - discovery.type=single-node
-        ports:
-            - 9200:9200
-            - 9300:9300
         networks:
             - backend
     setup:
@@ -23,8 +20,6 @@ services:
             - setup
         volumes:
             - ./API_Python:/usr/src/app
-        ports:
-            - "5000:5000"
         environment: 
             - FLASK_APP=/usr/src/app/app.py
             - FLASK_ENV=development
@@ -41,10 +36,6 @@ services:
         networks: 
             - backend
             - frontend
-        ports:
-            - "8080:8080"
-            - "8081:8081"
-
     frontend:
         depends_on:
             - database
@@ -56,10 +47,20 @@ services:
             - ./client:/usr/src/app
         networks: 
             - frontend
-        ports:
-            - "3000:3000"
         stdin_open: true
         command: yarn start
+    nginx:
+        depends_on: 
+            - frontend
+            - pythonapi
+            - csharpapi
+        restart: always
+        build: './Nginx'
+        ports:
+            - "9000:9000"
+        networks: 
+            - frontend
+            - backend
 
 networks:
     frontend:

@@ -30,15 +30,23 @@ namespace Recipes.Data
                 recipes.Add(recipe);
             }
             return recipes;
-
         }
 
-        public Recipe getRecipeByid(string id)
+        public Recipe getRecipeByid(string id, int servings)
         {
             var recipe = _context.Get<Recipe>(id);
             if (!recipe.IsValid)
             {
                 throw new ElasticsearchClientException("Invalid Request / Nothing Found");
+            }
+            int originalServings = recipe.Source.servings;
+            if (servings > 0 && servings != originalServings)
+            {
+                foreach (Ingredient i in recipe.Source.ingredients)
+                {
+                    i.quantity = ((float)i.quantity / (float)originalServings) * (float)servings;
+                }
+                recipe.Source.servings = servings;
             }
             return recipe.Source;
         }

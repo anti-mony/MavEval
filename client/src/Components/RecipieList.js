@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Recipie from "./Recipie";
 import RecipieSummary from "./RecipieSummary";
+import { ApiContext } from "../Context/Api"
 import axios from "axios";
 
-const getRecipes = async () => {
+const getRecipes = async (prefix) => {
   const recipies = await axios
-    .get("/api/p/recipies")
-    .then((response) => response.data.data);
+    .get(`${prefix}/recipies`)
+    .then((response) => response.data);
   return recipies;
 };
 
-const getRecipe = async (id, servings) => {
+const getRecipe = async (id, servings, prefix) => {
   const url =
     servings !== ""
-      ? `/api/p/recipies/${id}?servings=${servings}`
-      : `/api/p/recipies/${id}`;
+      ? `${prefix}/recipies/${id}?servings=${servings}`
+      : `${prefix}/api/p/recipies/${id}`;
   const recipe = await axios.get(url).then((response) => response.data);
   return recipe;
 };
 
 const RecipieList = () => {
+
+  const { prefix } = useContext(ApiContext);
+
   const [state, setState] = useState({
     loading: true,
     data: null,
@@ -27,9 +31,9 @@ const RecipieList = () => {
   });
 
   const setCurrent = (id, servings) => {
-    getRecipe(id, servings)
+    getRecipe(id, servings, prefix)
       .then((recipe) => {
-        setState({ ...state, current: recipe.data });
+        setState({ ...state, current: recipe });
       })
       .catch((err) => {
         console.error(err);
@@ -38,7 +42,7 @@ const RecipieList = () => {
   };
 
   useEffect(() => {
-    getRecipes()
+    getRecipes(prefix)
       .then((recipies) => {
         setState({ loading: false, data: recipies, current: null });
       })
@@ -46,14 +50,14 @@ const RecipieList = () => {
         console.error(err);
         alert("There was error in getting recipies !");
       });
-  }, []);
+  }, [prefix]);
 
   return !state.loading ? (
     <div className="columns push-navbar">
       <div className="container">
         <div className="heading">Recipes Available</div>
-
-        {state.data.map((recipie) => (
+        {state.data.length === 0 && "No Recipies Available, Add a new one !"}
+        {state.data.length > 0 && state.data.map((recipie) => (
           <RecipieSummary
             recipie={recipie}
             key={recipie.id}

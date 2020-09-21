@@ -7,14 +7,18 @@ import NewRecipie from "./Components/NewRecipie";
 
 import "./styles/style.css";
 
+import ApiProvider from './Context/Api'
+
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={RecipieList} />
-        <Route exact path="/new" component={NewRecipie} />
-      </Switch>
+      <ApiProvider>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={RecipieList} />
+          <Route exact path="/new" component={NewRecipie} />
+        </Switch>
+      </ApiProvider>
     </Router>
   );
 }

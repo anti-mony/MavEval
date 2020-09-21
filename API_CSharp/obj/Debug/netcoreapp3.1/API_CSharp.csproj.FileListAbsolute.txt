@@ -21,3 +21,8 @@
 /home/sushant/Repositories/MavEval/API_CSharp/bin/Debug/netcoreapp3.1/Elasticsearch.Net.dll
 /home/sushant/Repositories/MavEval/API_CSharp/bin/Debug/netcoreapp3.1/Nest.dll
 /home/sushant/Repositories/MavEval/API_CSharp/obj/Debug/netcoreapp3.1/API_CSharp.csproj.CopyComplete
+/home/sushant/Repositories/MavEval/API_CSharp/bin/Debug/netcoreapp3.1/out/web.config
+/home/sushant/Repositories/MavEval/API_CSharp/bin/Debug/netcoreapp3.1/out/API_CSharp.deps.json
+/home/sushant/Repositories/MavEval/API_CSharp/bin/Debug/netcoreapp3.1/out/API_CSharp.runtimeconfig.json
+/home/sushant/Repositories/MavEval/API_CSharp/bin/Debug/netcoreapp3.1/out/appsettings.Development.json
+/home/sushant/Repositories/MavEval/API_CSharp/bin/Debug/netcoreapp3.1/out/appsettings.json

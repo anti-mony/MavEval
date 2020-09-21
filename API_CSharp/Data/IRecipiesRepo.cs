@@ -7,7 +7,7 @@ namespace Recipes.Data
     public interface IRecipesRepo
     {
         IEnumerable<Recipe> getAllRecipies();
-        Recipe getRecipeByid(string id);
+        Recipe getRecipeByid(string id, int servings);
 
         bool putRecipe(Recipe r);
 
