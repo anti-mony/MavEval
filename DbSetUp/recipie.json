@@ -16,10 +16,10 @@
     {
       "name": "Mix",
       "quantity": 1,
-      "unit": "box"
+      "unit": "Box"
     },
     {
-      "name": "egg",
+      "name": "Egg",
       "quantity": 1,
       "unit": ""
     }

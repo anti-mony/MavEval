@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "DIXo45eYPWxGXWAYN//fQjGFxeZjEydQrYeBPXSBdyOhiHpk+zUd6wtQQRBWxrUOxQXvY3PXhVZ5oryMf69f1A==",
+  "success": true,
+  "projectFilePath": "/home/sushant/Repositories/MavEval/API_CSharp/API_CSharp.csproj",
+  "expectedPackageFiles": [
+    "/home/sushant/.nuget/packages/elasticsearch.net/7.9.0/elasticsearch.net.7.9.0.nupkg.sha512",
+    "/home/sushant/.nuget/packages/microsoft.csharp/4.6.0/microsoft.csharp.4.6.0.nupkg.sha512",
+    "/home/sushant/.nuget/packages/nest/7.9.0/nest.7.9.0.nupkg.sha512",
+    "/home/sushant/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
+    "/home/sushant/.nuget/packages/system.diagnostics.diagnosticsource/4.5.1/system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512"
+  ],
+  "logs": []
+}

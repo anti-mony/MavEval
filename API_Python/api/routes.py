@@ -3,7 +3,7 @@ from api.controller import get, add
 
 recipies = Blueprint('recipies', __name__)
 
-@recipies.route('/')
+@recipies.route('/api/p/')
 def getSpec():
     return jsonify({
         " Welcome": "Manage all your recipies here :)",
@@ -17,7 +17,7 @@ def getSpec():
     }), 200
 
 
-@recipies.route('/recipies', methods=['GET', 'POST'])
+@recipies.route('/api/p/recipies', methods=['GET', 'POST'])
 def getRecepies():
     """
     Request Handler for the route /recipies
@@ -33,7 +33,7 @@ def getRecepies():
             return response, 200
         return response
 
-@recipies.route('/recipies/<id>', methods=['GET'])
+@recipies.route('/api/p/recipies/<id>', methods=['GET'])
 def getRecepie(id):
     """
     request Handler for the route /recipies/<id>

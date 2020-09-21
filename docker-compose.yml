@@ -32,10 +32,24 @@ services:
             - backend
             - frontend
         command: flask run --host=0.0.0.0 --port=5000
+    csharpapi:
+        restart: always
+        build: './API_CSharp'
+        depends_on: 
+            - database
+            - setup
+        networks: 
+            - backend
+            - frontend
+        ports:
+            - "8080:8080"
+            - "8081:8081"
+
     frontend:
         depends_on:
             - database
             - pythonapi
+            - csharpapi
         restart: always
         build: ./client
         volumes:

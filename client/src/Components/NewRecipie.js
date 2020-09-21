@@ -50,7 +50,7 @@ const NewRecipie = () => {
           })}
           onSubmit={async (values) => {
             const response = await axios
-              .post("/recipies", values)
+              .post("/api/p/recipies", values)
               .then((res) => {
                 alert("Added the new recipe, view it the recipes viewer");
                 return res.data;

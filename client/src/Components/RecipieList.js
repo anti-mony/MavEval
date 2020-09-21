@@ -5,7 +5,7 @@ import axios from "axios";
 
 const getRecipes = async () => {
   const recipies = await axios
-    .get("/recipies")
+    .get("/api/p/recipies")
     .then((response) => response.data.data);
   return recipies;
 };
@@ -13,8 +13,8 @@ const getRecipes = async () => {
 const getRecipe = async (id, servings) => {
   const url =
     servings !== ""
-      ? `/recipies/${id}?servings=${servings}`
-      : `/recipies/${id}`;
+      ? `/api/p/recipies/${id}?servings=${servings}`
+      : `/api/p/recipies/${id}`;
   const recipe = await axios.get(url).then((response) => response.data);
   return recipe;
 };
@@ -66,17 +66,17 @@ const RecipieList = () => {
         {state.current ? (
           <Recipie recipe={state.current} />
         ) : (
-          "Nothing selected right now :D"
-        )}
+            "Nothing selected right now :D"
+          )}
       </div>
     </div>
   ) : (
-    <div className="spinner">
-      <div className="bounce1"></div>
-      <div className="bounce2"></div>
-      <div className="bounce3"></div>
-    </div>
-  );
+      <div className="spinner">
+        <div className="bounce1"></div>
+        <div className="bounce2"></div>
+        <div className="bounce3"></div>
+      </div>
+    );
 };
 
 export default RecipieList;
