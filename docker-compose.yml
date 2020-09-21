@@ -1,69 +1,62 @@
-version: '3.8'
+version: "3.8"
 services:
-    database:
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
-        environment: 
-            - discovery.type=single-node
-        networks:
-            - backend
-    setup:
-        build: './DbSetUp'
-        depends_on:
-            - database
-        networks: 
-            - backend
-    pythonapi:
-        restart: always
-        build: './API_Python'
-        depends_on:
-            - database
-            - setup
-        volumes:
-            - ./API_Python:/usr/src/app
-        environment: 
-            - FLASK_APP=/usr/src/app/app.py
-            - FLASK_ENV=development
-        networks: 
-            - backend
-            - frontend
-        command: flask run --host=0.0.0.0 --port=5000
-    csharpapi:
-        restart: always
-        build: './API_CSharp'
-        depends_on: 
-            - database
-            - setup
-        networks: 
-            - backend
-            - frontend
-    frontend:
-        depends_on:
-            - database
-            - pythonapi
-            - csharpapi
-        restart: always
-        build: ./client
-        volumes:
-            - ./client:/usr/src/app
-        networks: 
-            - frontend
-        stdin_open: true
-        command: yarn start
-    nginx:
-        depends_on: 
-            - frontend
-            - pythonapi
-            - csharpapi
-        restart: always
-        build: './Nginx'
-        ports:
-            - "80:9000"
-        networks: 
-            - frontend
-            - backend
+  database:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+    environment:
+      - discovery.type=single-node
+    networks:
+      - backend
+  setup:
+    build: "./DbSetUp"
+    depends_on:
+      - database
+    networks:
+      - backend
+  pythonapi:
+    restart: always
+    build: "./API_Python"
+    depends_on:
+      - database
+      - setup
+    networks:
+      - backend
+      - frontend
+    command: gunicorn --bind 0.0.0.0:5000 app:app
+  csharpapi:
+    restart: always
+    build: "./API_CSharp"
+    depends_on:
+      - database
+      - setup
+    networks:
+      - backend
+      - frontend
+  frontend:
+    depends_on:
+      - database
+      - pythonapi
+      - csharpapi
+    restart: always
+    build: ./client
+    networks:
+      - frontend
+    stdin_open: true
+    command: npx serve -l 3000 -s build
+  nginx:
+    depends_on:
+      - frontend
+      - pythonapi
+      - csharpapi
+    restart: always
+    build: "./Nginx"
+    ports:
+      - "80:9000"
+    networks:
+      - frontend
+      - backend
 
 networks:
-    frontend:
-        driver: bridge
-    backend:
-        driver: bridge
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge

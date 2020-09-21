@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 60
+sleep 30
 
 curl -H "Content-Type: application/json" -X PUT http://database:9200/recipies -d @createIndex.json
 

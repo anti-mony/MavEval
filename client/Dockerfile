@@ -9,3 +9,5 @@ RUN yarn install
 
 # Copying source files
 COPY . .
+
+RUN yarn build

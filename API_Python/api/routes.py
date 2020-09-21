@@ -1,7 +1,9 @@
 from flask import Blueprint, json, jsonify, request
-from api.controller import get, add
-
+from api.controller import Controller
+from api.database import db
 recipies = Blueprint('recipies', __name__)
+
+controller = Controller(db)
 
 
 @recipies.route('/api/p/')
@@ -24,12 +26,12 @@ def getRecepies():
     Request Handler for the route /recipies
     """
     if request.method == 'GET':
-        response = get()
+        response = controller.get()
         if isinstance(response, list):
             return jsonify(response), 200
         return response
     else:
-        response = add(request.json)
+        response = controller.add(request.json)
         if isinstance(response, dict):
             return response, 200
         return response
@@ -42,7 +44,7 @@ def getRecepie(id):
     """
 
     servings = request.args.get('servings', None, type=int)
-    response = get(id, servings=servings)
+    response = controller.get(id, servings=servings)
 
     if not isinstance(response, dict):
         return response
