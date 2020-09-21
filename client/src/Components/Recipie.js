@@ -42,8 +42,10 @@ const Recipie = ({ recipe }) => {
         </ul>
       </div>
       <div className="item">
-        <div className="label">Instructions: </div>
-        <div>{recipe.instructions}</div>
+        <div className="label item">Instructions: </div>
+        <div style={{ textAlign: "justify", lineHeight: "1.5" }}>
+          {recipe.instructions}
+        </div>
       </div>
     </div>
   );

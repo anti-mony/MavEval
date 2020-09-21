@@ -3,6 +3,12 @@ import PropTypes from "prop-types";
 
 const RecipieSummary = ({ recipie, onClick }) => {
   const [servings, setServings] = useState(recipie.servings);
+  const [time, setTime] = useState();
+
+  const handleChange = (id, value) => {
+    clearTimeout(time);
+    setTime(setTimeout(() => onClick(id, value), 250));
+  };
 
   return (
     <div
@@ -39,9 +45,8 @@ const RecipieSummary = ({ recipie, onClick }) => {
           type="number"
           value={servings}
           onClick={(e) => e.stopPropagation()}
-          onChange={(e) => {
-            setServings(e.target.value);
-          }}
+          onChange={(e) => setServings(e.target.value)}
+          onInput={(e) => handleChange(recipie.id, e.target.value)}
           min="1"
           className="forminput"
         />

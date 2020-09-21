@@ -57,7 +57,7 @@ services:
         restart: always
         build: './Nginx'
         ports:
-            - "9000:9000"
+            - "80:9000"
         networks: 
             - frontend
             - backend
